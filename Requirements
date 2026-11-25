@@ -1,0 +1,115 @@
+Requirements：
+You are using powerbi-authoring MCP, which supports both semantic model DAX measure creation AND report visual authoring.
+Task: Build Power BI Report: ES National Operations - Aftersales Dashboard
+Rules:
+1. Single page, vertical scroll layout. Right side fixed floating navigation bar, can toggle hide/show, anchor to Parts / Warranty / Technical Support.
+2. Global filters at top: Date Range, Month, Country, Dealer, Store. Add text box annotation on top: Select a date range and apply it to view performance. Default month : Current month. Time zone: BJS. Data refreshed T-1
+3. Style: McKinsey professional style, HTML-style clean cards, maximum 3 color families with light/dark variants. Use ZebraBI custom visual for advanced ranked chart and combo chart when needed.
+4. Phase scope: ONLY build Parts, Warranty, Technical Support. Repair Service is reserved for later phase.
+5. All KPI cards need small last-7-days sparkline inside. Every KPI card supports right-click drill through to Dealer + Store matrix with conditional formatting sorted bar chart descending.
+6. Create ALL DAX measures first based on the table ads_geely_aftersales_daily_wide_hf and the calculation logic I provided. Then create visuals one by one strictly follow the spec.
+7. Label all tooltip, subtitle, unit annotation exactly as requested: days / hrs / EUR.
+8. For pie chart Sales YTD: enable drill down from category_l1_name to category_l2_name, tooltip note: Click to drill down to Spare Part Type level 2.
+9. Top N warranty part chart: add slicer to switch top 10 /20 /50 /100, group by vehicle_model, warranty_part_code, warranty_part_name, sort by requested_part_quantity descending, show requested_part_amount.
+10. Do NOT add extra metrics or charts outside this requirement.
+11. After you finish creating measures and visuals, list all measures name and confirm each visual is placed under correct section.
+
+Dashboard Name:	ES National Operations - Aftersales Dashboard
+Dashboard Filter:	1. Date Range 2.Month 3.Country 4.Dealer 5.Store 这里为全局筛选器；加全英文文本框注释：参考Select a date range and apply it to view performance. Default month : Current month. Time zone: BJS. 数据默认更新T-1
+Dashboard Content:	
+1. 看板由一页Page构成；共计四大模块Parts、Warranty、Technical Support、Repair Service，当前一期完成Parts、Warranty、Technical Support即可，模块竖着往下滚动排布,右侧可以加一个浮动的导航栏快速滑动到对应的模块，必要时加上隐藏导航栏的功能；powerbi看板主题风格偏HTML；
+2. 首先，Parts 模块：
+	"指标共计 First-time Fill Rate、MTD & YTD  Sales Value、Back Orders Lines、Back Orders SKU、Average Lead Time（regular）
+、Overall Service Fill、Parts Sales by Category、Vor/Urgent Percentage、Average Lead Time（VOR&URGENT）"
+2.1 指标卡主要指标分别为：
+	Sales Value(Tax Incl.)
+	First-time Fill Rate
+	Overall Service Fill Rate
+	Back Orders Lines
+	Back Orders SKU
+	Vor/Urgent Percentage
+	Average Lead Time(Regular)
+	Average Lead Time(VOR&URGENT)
+	以上指标的副指标包含 MTD、YTD、MoM、YoY
+	指标卡参考样式如附件; 包含last 7 days的趋势；Sales Value(Tax Incl.) 指标结合Currency欧元符号；Average Lead Time(Regular) 和 Average Lead Time(VOR&URGENT) 指标注释(DAYS)单位缩写；
+指标卡右键钻取下钻查看拆解到Dealer和Store的矩阵图，条件格式展示条形图降序排列展示；
+2.2 Sales Value(Tax Incl.) 指标拆Monthly Trend, 结合Spare Part Type level 1(字段category_l1_name)，做堆叠趋势图，展示总计即可；
+再加一张YTD Sales Value(Tax Incl.) 年累计的饼图Spare Part Type level 1(字段category_l1_name)下钻Spare Part Type level 2(category_l2_name)；
+增加注释语句点击下钻查看Spare Part Type level 2；图表样式参考专业麦肯锡风格；必要的时可以采用第三方自定义视觉（ZebraBI 等）需要审美UI Skill告诉我；色彩要求不超过3个色系结合深浅搭配；
+2.3 Vor/Urgent Percentage指标组合趋势图浅色柱子为该指标分母的量级，实色柱子为Vor/Urgent Percentage的分子量级，以及另一个Y轴曲线图展示Vor/Urgent Percentage占比用突出的颜色。
+tooltip同时展示该指标占比和分子分母的量级，展示Monthly Trend。
+2.4 对比Average Lead Time(VOR&URGENT) 和 Average Lead Time(Regular)指标 趋势是Monthly Trend；可以将Vor/Urgent Percentage和Average Lead Time(VOR&URGENT) 和 Average Lead Time(Regular)指标作为组合图同时展示VOR&URGENT量级占比以及时效情况；
+副标题注释Average Lead Time(Regular) 和 Average Lead Time(VOR&URGENT) 指标days单位缩写；
+3. 再是，Warranty 模块：
+指标共计Warranty Cost、Warranty Cost (Spain Retail) %、First Time Pass Rate、PDI Completion Rate、Average Claim Processing Time(hrs)、Warranty Parts
+3.1 指标卡主要指标分别为：
+Warranty Cost
+Warranty Cost (Spain Retail) %
+First Time Pass Rate
+PDI Completion Rate
+Average Claim Processing Time
+以上指标的副指标包含 MTD、YTD、MoM、YoY
+指标卡参考样式如图：HTML cards; 包含last 7 days的趋势；Warranty Cost指标结合Currency欧元符号；Average Claim Processing Time 指标注释days单位缩写；
+指标卡右键钻取下钻查看拆解到Dealer和Store的矩阵图，条件格式展示条形图降序排列展示
+3.2 Warranty Cost & Warranty Cost (Spain Retail) %指标 组合趋势图浅色柱子为该指标分母Warranty Cost的量级，实色柱子为Warranty Cost (Spain Retail) %的分子量级，并排柱子并非累加以及另一个Y轴展示曲线图Warranty Cost (Spain Retail) %用突出的颜色。tooltip同时展示该指标占比和分子分母的量级，展示Monthly Trend。；图表样式参考专业麦肯锡风格；必要的时可以采用第三方自定义视觉（ZebraBI 等）需要审美skill告诉我；\
+3.3 First Time Pass Rate、PDI Completion Rate、Average Claim Processing Time 分别做Monthly Trend趋势图；First Time Pass Rate、PDI Completion Rate可以采用组合趋势图展示分子分母量级以及RATE的曲线趋势；副标题Average Claim Processing Time 指标注释days单位缩写；
+3.4 Top 10 Warranty Parts 可以结合第三方自定义视觉（ZebraBI 等）需要审美skill告诉我；按照每种车型vehicle_model制作TOP10条形图降序排列recording by Qty (requested_part_quantity字段）降序 同时展示 Cost（requested_part_amount字段）  
+group by vehicle_model 以及 warranty_part_code & warranty_part_name；可以的话，做个TOP N的filter 可以选择10/20/50/100等TOP排行；
+4. 再是，Technical Support 模块：
+指标共计Technical Inquiries Open、Technical Inquiries Closed、Average Response Time (L2)
+4.1 指标卡主要指标分别为：
+Technical Inquiries Open
+Technical Inquiries Closed
+Average Response Time (L2)
+以上指标的副指标包含 MTD、YTD、MoM、YoY
+指标卡参考样式如图：HTML cards; 包含last 7 days的趋势；Average Response Time (L2) 指标注释hrs单位缩写；
+
+指标卡右键钻取下钻查看拆解到Dealer和Store的矩阵图，条件格式展示条形图降序排列展示
+4.2 Technical Inquiries Open & Technical Inquiries Closed指标 组合趋势图两根柱子并排非堆叠分别对比Open与Closed量级，展示Monthly Trend；图表样式参考专业麦肯锡风格；必要的时可以采用第三方自定义视觉（ZebraBI 等）需要审美UI Skill告诉我；
+Average Response Time (L2)展示Monthly Trend；图表样式参考专业麦肯锡风格；必要的时可以采用第三方自定义视觉（ZebraBI 等）需要审美skill告诉我；副标题注释Average Response Time (L2) 指标Hrs单位缩写
+
+Dataset Source RAW INFO
+Table Name：ads_geely_aftersales_daily_wide_hf
+Fields：
+	    biz_date,                                -- 指标归属日期；不同指标按各自口径取发生、提交或快照日期
+	    dealer_code,                             -- 经销商编码
+	    dealer_name,                             -- 经销商名称
+	    store_code,                              -- 门店或维修网点编码
+	    store_name,                              -- 门店或维修网点名称
+	    currency_code,                           -- 币种；金额按币种分别汇总
+	    part_code AS warranty_part_code,         -- R26：保修配件件号
+	    vehicle_model,                           -- R26：车辆车型
+	    part_name AS warranty_part_name,         -- R26：保修配件名称
+	    category_l1_name,                        -- R4/R14 共用：备件一级分类；未映射显示「未分类」
+	    category_l2_name,                        -- R4/R14 共用：备件二级分类；未映射显示「未分类」
+	    first_fill_po_line_count,                -- R3 分子：首次足量满足的采购订单行数
+	    first_fill_eligible_po_line_count,       -- R3购订单行数
+	    sales_amount_incl_tax,                   -- R4/R14 共用：含税销售额；缺少价格依据时为 NULL
+	    bo_line_count,                           -- R5：当日快照的缺货订单行数，不跨日相加
+	    bo_distinct_part_count,                  -- R6：当日快照的缺货配件去重数，不直接跨日或跨店相加
+	    regular_dn_duration_days_sum,            -- R8 分子：普通订单有效送货单总耗时（天）
+	    regular_valid_dn_count,                  -- R8 分母：普通订单有效送货单数
+	    overall_fulfilled_po_line_count,          -- R13 分子：已满足的采购订单行数
+	    overall_eligible_po_line_count,          -- R13 分母：纳入整体满足率计算的采购订单行数
+	    fulfilled_urgent_vor_po_line_count,      -- R1 类采购订单行数
+	    fulfilled_eligible_po_line_count,        -- R15 分母：纳入该占比计算的已满足采购订单行数
+	    urgent_dn_duration_days_sum,             -- R1 效送货单总耗时（天）
+	    urgent_valid_dn_count,                   -- R16 分母：紧急或车辆停驶类订单有效送货单数
+	    warranty_cost_amount,                    -- R20 分母：西班牙保修费用总额
+	    spain_terminal_es_warranty_cost_amount,  -- R20 分子：上述费用中车辆终端国也为西班牙的金额
+	    first_pass_claim_count,                  -- R21 分子：首次审核通过的索赔单数
+	    submitted_claim_count,                   -- R2 结果未知不等于未通过
+	    completed_pdi_vin_count,                 -- R22 分子：已完成交付前检查的车辆识别码去重数
+	    total_pdi_vin_count,                     -- R22 分母：纳入交付前检查完成率的车辆识别码去重数
+	    claim_processing_days_sum,               -- R2 ）
+	    valid_processing_claim_count,           -- R25 分母：有有效处理时长的索赔单数
+	    requested_part_quantity,                -- R26：保修配件申请数量，不是批准数量
+	    requested_part_amount,                  -- R26 额
+	    pending_ti_vin_count,                    -- R27：当日快照中待处理技术咨询涉及的车辆识别码去重数
+	    closed_ti_vin_count,                     -- R28：当日观察到关闭事件的技术咨询所涉车辆识别码去重数
+	    l2_interval_hours_sum,                   -- R29 分子：二线技术支持有效响应间隔总时长（小时）
+	    valid_l2_interval_count,                 -- R29 分母：有效响应间隔数，不是工单数
+	    eligible_sales_line_count,               -- R4/R14：纳入销售额口径的销售订单行数
+	    missing_sales_amount_line_count           -- R4/R14：缺少金额的销售订单行数；大于 0 表示该范围金额不完整
+	FROM dbo_dwh.ads_geely_aftersales_daily_wide_hf;
+	
