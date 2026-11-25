@@ -17,7 +17,8 @@ Rules:
 Dashboard Name:	ES National Operations - Aftersales Dashboard
 Dashboard Filter:	1. Date Range 2.Month 3.Country 4.Dealer 5.Store 这里为全局筛选器；加全英文文本框注释：参考Select a date range and apply it to view performance. Default month : Current month. Time zone: BJS. 数据默认更新T-1
 Dashboard Content:	
-1. 看板由一页Page构成；共计四大模块Parts、Warranty、Technical Support、Repair Service，当前一期完成Parts、Warranty、Technical Support即可，模块竖着往下滚动排布,右侧可以加一个浮动的导航栏快速滑动到对应的模块，必要时加上隐藏导航栏的功能；powerbi看板主题风格偏HTML；
+1. 看板由一页Page构成；共计四大模块Parts、Warranty、Technical Support、Repair Service，当前一期完成Parts、Warranty、Technical Support即可，模块竖着往下滚动排布,右侧可以加一个浮动的导航栏快速滑动到对应的模块，必要时加上隐藏导航栏的功能；
+powerbi看板主题风格偏HTML；保证看板整体布局自适应不会重叠信息内容完整展示。
 2. 首先，Parts 模块：
 	"指标共计 First-time Fill Rate、MTD & YTD  Sales Value、Back Orders Lines、Back Orders SKU、Average Lead Time（regular）
 、Overall Service Fill、Parts Sales by Category、Vor/Urgent Percentage、Average Lead Time（VOR&URGENT）"
@@ -31,7 +32,7 @@ Dashboard Content:
 	Average Lead Time(Regular)
 	Average Lead Time(VOR&URGENT)
 	以上指标的副指标包含 MTD、YTD、MoM、YoY
-	指标卡参考样式如附件; 包含last 7 days的趋势；Sales Value(Tax Incl.) 指标结合Currency欧元符号；Average Lead Time(Regular) 和 Average Lead Time(VOR&URGENT) 指标注释(DAYS)单位缩写；
+	指标卡参考样式如KPI卡_改造后样式.html; 包含last 7 days的趋势；Sales Value(Tax Incl.) 指标结合Currency欧元符号；Average Lead Time(Regular) 和 Average Lead Time(VOR&URGENT) 指标注释(DAYS)单位缩写；
 指标卡右键钻取下钻查看拆解到Dealer和Store的矩阵图，条件格式展示条形图降序排列展示；
 2.2 Sales Value(Tax Incl.) 指标拆Monthly Trend, 结合Spare Part Type level 1(字段category_l1_name)，做堆叠趋势图，展示总计即可；
 再加一张YTD Sales Value(Tax Incl.) 年累计的饼图Spare Part Type level 1(字段category_l1_name)下钻Spare Part Type level 2(category_l2_name)；
@@ -49,7 +50,7 @@ First Time Pass Rate
 PDI Completion Rate
 Average Claim Processing Time
 以上指标的副指标包含 MTD、YTD、MoM、YoY
-指标卡参考样式如图：HTML cards; 包含last 7 days的趋势；Warranty Cost指标结合Currency欧元符号；Average Claim Processing Time 指标注释days单位缩写；
+指标卡参考样式如图：KPI卡_改造后样式.html; 包含last 7 days的趋势；Warranty Cost指标结合Currency欧元符号；Average Claim Processing Time 指标注释days单位缩写；
 指标卡右键钻取下钻查看拆解到Dealer和Store的矩阵图，条件格式展示条形图降序排列展示
 3.2 Warranty Cost & Warranty Cost (Spain Retail) %指标 组合趋势图浅色柱子为该指标分母Warranty Cost的量级，实色柱子为Warranty Cost (Spain Retail) %的分子量级，并排柱子并非累加以及另一个Y轴展示曲线图Warranty Cost (Spain Retail) %用突出的颜色。tooltip同时展示该指标占比和分子分母的量级，展示Monthly Trend。；图表样式参考专业麦肯锡风格；必要的时可以采用第三方自定义视觉（ZebraBI 等）需要审美skill告诉我；\
 3.3 First Time Pass Rate、PDI Completion Rate、Average Claim Processing Time 分别做Monthly Trend趋势图；First Time Pass Rate、PDI Completion Rate可以采用组合趋势图展示分子分母量级以及RATE的曲线趋势；副标题Average Claim Processing Time 指标注释days单位缩写；
@@ -62,7 +63,7 @@ Technical Inquiries Open
 Technical Inquiries Closed
 Average Response Time (L2)
 以上指标的副指标包含 MTD、YTD、MoM、YoY
-指标卡参考样式如图：HTML cards; 包含last 7 days的趋势；Average Response Time (L2) 指标注释hrs单位缩写；
+指标卡参考样式如图：KPI卡_改造后样式.html; 包含last 7 days的趋势；Average Response Time (L2) 指标注释hrs单位缩写；
 
 指标卡右键钻取下钻查看拆解到Dealer和Store的矩阵图，条件格式展示条形图降序排列展示
 4.2 Technical Inquiries Open & Technical Inquiries Closed指标 组合趋势图两根柱子并排非堆叠分别对比Open与Closed量级，展示Monthly Trend；图表样式参考专业麦肯锡风格；必要的时可以采用第三方自定义视觉（ZebraBI 等）需要审美UI Skill告诉我；
